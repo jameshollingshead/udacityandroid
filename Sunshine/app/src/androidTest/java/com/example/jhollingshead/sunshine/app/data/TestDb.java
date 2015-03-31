@@ -199,10 +199,10 @@ public class TestDb extends AndroidTestCase {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         //second step (weather): create weather values
-        ContentValues weatherValies = TestUtilities.createWeatherValues(locationRowId);
+        ContentValues weatherValues = TestUtilities.createWeatherValues(locationRowId);
 
         //third step (weather): insert ContentValues into database and get a row id back
-        long weatherRowId = db.insert(WeatherContract.WeatherEntry.TABLE_NAME, null, weatherValies);
+        long weatherRowId = db.insert(WeatherContract.WeatherEntry.TABLE_NAME, null, weatherValues);
         assertTrue(weatherRowId != -1);
 
         //fourth step: query the database and receive a cursor back
@@ -222,7 +222,7 @@ public class TestDb extends AndroidTestCase {
 
         // fifth step: validate the location query
         TestUtilities.validateCurrentRecord("testInsertReadDb weatherEntry failed to validate",
-                weatherCursor, weatherValies);
+                weatherCursor, weatherValues);
 
         //move the cursor to demonstrate that there is only one record in the database
         assertFalse("Error: Moe than one record returned from weather query" ,
